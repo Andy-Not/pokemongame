@@ -11,6 +11,29 @@ const bag = [
         healthStatus: 100}
 ]
 while (inGame === true){
+    let pikachu = prompt("type attack to attack").toLowerCase();
+
+    while(pikachu !== "attack"){
+        pikachu = prompt("type attack to attack").toLowerCase();
+    }
+    if (pikachu === "attack"){
+        bag[1].healthStatus -= attack;
+    }
+
+    alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`)
+
+    let squirtle = prompt("type attack to attack").toLowerCase();
+
+    while(squirtle !== "attack"){
+        squirtle = prompt("type attack to attack").toLowerCase();
+    }
+
+    if (squirtle === "attack"){
+        bag[0].healthStatus -= attack;
+    }
+
+    alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
+
     if (bag[0].healthStatus <= 0 || bag[1].healthStatus <= 0){
         alert("GAME OVER")
         inGame = false;
