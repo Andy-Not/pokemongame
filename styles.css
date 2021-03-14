@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.main{background-color: #377227;
+    width: 800px;
+    height: 600px;
+    padding: 5px;
+}
+.arena{
+    background-color: red;
+    width: auto;
+    height: 376px;
+    background: url("imgs/background/battlegrass.png") no-repeat;
+    background-size: 800px;
+    position: relative;
+    border: black 2px solid;
+}
+.pikachu{
+    width: 290px;
+    height: 190px;
+    position: absolute;
+    bottom: 0px;
+}
+.squirtle{
+    /*border: black 2px solid;*/
+    width: 290px;
+    height: 190px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.pikachu img{
+    position: absolute;
+    bottom: 0;
+    right: 120px;
+    width: 140px;
+}
+.squirtle img{
+    position: absolute;
+    bottom: 30px;
+    right: 72px;
+    width: 80px;
+}

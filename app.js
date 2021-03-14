@@ -1,4 +1,4 @@
-let inGame = true;
+let inGame = true; //delete this
 let attack = 25;
 
 
@@ -10,7 +10,7 @@ const bag = [
         type: "water",
         healthStatus: 100}
 ]
-while (inGame === true){
+while (inGame === true){ // set this to just true
 
     let criticalAttack = Math.floor(Math.random()*11);
 
