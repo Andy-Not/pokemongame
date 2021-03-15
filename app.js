@@ -57,15 +57,40 @@ while (true){
         break;
     }
 
-    let squirtle = prompt("type attack to attack").toLowerCase();
+    let squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
 
-    while(squirtle !== "attack"){
-        squirtle = prompt("type attack to attack").toLowerCase();
+    while(squirtle !== "attack" && squirtle !== "heal"){
+        squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
     }
+
+    if(squirtle === "attack"){
 
         bag[0].healthStatus -= attack;
 
-    alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
+        if (criticalAttack > 5){
+            bag[0].healthStatus -= criticalAttack;
+            alert(`you hit a critical attack! for ${criticalAttack} hp`)
+        }
+
+        alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
+
+    } else if(bag[1].healthStatus >= bag[1].maxHealth){
+
+        alert(`your health was already ${bag[1].maxHealth}`);
+
+        bag[1].healthStatus = bag[1].maxHealth;
+
+    }else {
+        bag[1].healthStatus += heal;
+
+        if (bag[1].healthStatus >= bag[1].maxHealth){
+
+            bag[1].healthStatus = bag[1].maxHealth;
+
+        }
+
+        alert(`you heal for 10 your health is now ${bag[1].healthStatus}`);
+    }
 
     if (bag[1].healthStatus <= 0 || bag[0].healthStatus <= 0){
         break;
