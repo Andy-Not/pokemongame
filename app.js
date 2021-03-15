@@ -1,33 +1,57 @@
-let inGame = true;
 let attack = 25;
+let heal = 10;
 
 
 const bag = [
     {pokemonName: "pikachu",
         type: "electric",
+        maxHealth: 150,
     healthStatus: 100},
     {pokemonName: "squirtle",
+        maxHealth: 100,
         type: "water",
         healthStatus: 100}
 ]
-while (inGame === true){
+while (true){
 
     let criticalAttack = Math.floor(Math.random()*11);
 
-    let pikachu = prompt("type attack to attack").toLowerCase();
+    let pikachu = prompt("type attack to attack or heal to heal").toLowerCase();
 
-    while(pikachu !== "attack"){
-        pikachu = prompt("type attack to attack").toLowerCase();
+    while(pikachu !== "attack" && pikachu !== "heal"){
+        alert("try again");
+        pikachu = prompt("type attack to attack or heal to heal").toLowerCase();
     }
+
+    if(pikachu === "attack"){
 
         bag[1].healthStatus -= attack;
 
-    if (criticalAttack > 5){
-        bag[1].healthStatus -= criticalAttack;
-        alert(`you hit a critical attack! for ${criticalAttack} hp`)
+        if (criticalAttack > 5){
+            bag[1].healthStatus -= criticalAttack;
+            alert(`you hit a critical attack! for ${criticalAttack} hp`)
+        }
+
+        alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`)
+
+    } else if(bag[0].healthStatus >= bag[0].maxHealth){
+
+        alert(`your health was already ${bag[0].maxHealth}`);
+
+        bag[0].healthStatus = bag[0].maxHealth;
+
+    }else {
+        bag[0].healthStatus += heal;
+
+        if (bag[0].healthStatus >= bag[0].maxHealth){
+
+            bag[0].healthStatus = bag[0].maxHealth;
+
+        }
+
+        alert(`you heal for 10 your health is now ${bag[0].healthStatus}`);
     }
 
-    alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`)
 
     if (bag[1].healthStatus <= 0 || bag[0].healthStatus <= 0){
         break;
