@@ -1,7 +1,16 @@
 let attack = 25;
 let heal = 10;
 
-
+function getCritical(enemy, num){
+    let criticalAttack = Math.floor(Math.random()*num);
+    if (criticalAttack > 6){
+        bag[enemy].healthStatus -= criticalAttack;
+        alert(`you hit a critical attack! for ${criticalAttack} hp`)
+    }
+}
+// function askForInput(pokemon,str){
+//
+// }
 const bag = [
     {pokemonName: "pikachu",
         type: "electric",
@@ -14,25 +23,15 @@ const bag = [
 ]
 
 while (true){
-
-    let criticalAttack = Math.floor(Math.random()*11);
-
     let pikachu = prompt("type attack to attack or heal to heal").toLowerCase();
-
     while(pikachu !== "attack" && pikachu !== "heal"){
         alert("try again");
         pikachu = prompt("type attack to attack or heal to heal").toLowerCase();
     }
 
     if(pikachu === "attack"){
-
         bag[1].healthStatus -= attack;
-
-        if (criticalAttack > 5){
-            bag[1].healthStatus -= criticalAttack;
-            alert(`you hit a critical attack! for ${criticalAttack} hp`)
-        }
-
+        getCritical(1, 15);
         alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`)
 
     } else if(bag[0].healthStatus >= bag[0].maxHealth){
@@ -68,10 +67,7 @@ while (true){
 
         bag[0].healthStatus -= attack;
 
-        if (criticalAttack > 5){
-            bag[0].healthStatus -= criticalAttack;
-            alert(`you hit a critical attack! for ${criticalAttack} hp`)
-        }
+        getCritical(0, 7);
 
         alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
 
