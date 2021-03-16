@@ -12,6 +12,7 @@ const bag = [
         type: "water",
         healthStatus: 100}
 ]
+
 while (true){
 
     let criticalAttack = Math.floor(Math.random()*11);
