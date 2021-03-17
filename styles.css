@@ -43,3 +43,23 @@
     right: 72px;
     width: 80px;
 }
+.myhpbar{
+    position: absolute;
+    bottom: 20px;
+    right: 0px;
+    /*background-color: red;*/
+    width: 290px
+}
+.myhpbar img{
+    width: 290px;
+}
+.enemy_hpbar{
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    /*background-color: red;*/
+    width: 240px
+}
+.enemy_hpbar img{
+    width: 240px;
+}
