@@ -56,39 +56,53 @@ while (true){
     if(checkGame()){
         break;
     }
+    alert("squirtles turn");
 
-
-    let squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
-
-    while(squirtle !== "attack" && squirtle !== "heal"){
-        squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
-    }
-
-    if(squirtle === "attack"){
-
+    let autoMove = Math.floor(Math.random()*11);
+    if (autoMove >= 4){
         neutralAttack(0);
-
         getCritical(0, 7);
-
         alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
-
-    } else if(bag[1].healthStatus >= bag[1].maxHealth){
-
-        alert(`your health was already ${bag[1].maxHealth}`);
-
-        bag[1].healthStatus = bag[1].maxHealth;
-
-    }else {
+    }else if(autoMove < 4 && bag[1].healthStatus < bag[1].maxHealth){
         bag[1].healthStatus += heal;
-
-        if (bag[1].healthStatus >= bag[1].maxHealth){
-
-            bag[1].healthStatus = bag[1].maxHealth;
-
-        }
-
-        alert(`you heal for 10 your health is now ${bag[1].healthStatus}`);
+        alert(`squirtle healed for 10hp squirtle's health is now ${bag[1].healthStatus}`);
+    }else {
+        neutralAttack(0);
+        getCritical(0, 7);
+        alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
     }
+
+    // let squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
+    //
+    // while(squirtle !== "attack" && squirtle !== "heal"){
+    //     squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
+    // }
+    //
+    // if(squirtle === "attack"){
+    //
+    //     neutralAttack(0);
+    //
+    //     getCritical(0, 7);
+    //
+    //     alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
+    //
+    // } else if(bag[1].healthStatus >= bag[1].maxHealth){
+    //
+    //     alert(`your health was already ${bag[1].maxHealth}`);
+    //
+    //     bag[1].healthStatus = bag[1].maxHealth;
+    //
+    // }else {
+    //     bag[1].healthStatus += heal;
+    //
+    //     if (bag[1].healthStatus >= bag[1].maxHealth){
+    //
+    //         bag[1].healthStatus = bag[1].maxHealth;
+    //
+    //     }
+    //
+    //     alert(`you heal for 10 your health is now ${bag[1].healthStatus}`);
+    // }
 
     if(checkGame()){
         break;
