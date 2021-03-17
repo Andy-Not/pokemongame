@@ -1,4 +1,3 @@
-let attack = 25;
 let heal = 10;
 
 function getCritical(enemy, num){
@@ -8,9 +7,16 @@ function getCritical(enemy, num){
         alert(`you hit a critical attack! for ${criticalAttack} hp`)
     }
 }
-// function askForInput(pokemon,str){
-//
-// }
+function checkGame(){
+    if (bag[1].healthStatus <= 0 || bag[0].healthStatus <= 0){
+       return true;
+    }
+}
+function neutralAttack(enemy){
+    let attack = 25;
+    bag[enemy].healthStatus -= attack;
+}
+
 const bag = [
     {pokemonName: "pikachu",
         type: "electric",
@@ -23,6 +29,7 @@ const bag = [
 ]
 
 while (true){
+
     let pikachu = prompt("type attack to attack or heal to heal").toLowerCase();
     while(pikachu !== "attack" && pikachu !== "heal"){
         alert("try again");
@@ -30,32 +37,26 @@ while (true){
     }
 
     if(pikachu === "attack"){
-        bag[1].healthStatus -= attack;
+        neutralAttack(1);
         getCritical(1, 15);
         alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`)
 
     } else if(bag[0].healthStatus >= bag[0].maxHealth){
-
         alert(`your health was already ${bag[0].maxHealth}`);
-
         bag[0].healthStatus = bag[0].maxHealth;
-
-    }else {
+    }else{
         bag[0].healthStatus += heal;
-
         if (bag[0].healthStatus >= bag[0].maxHealth){
-
-            bag[0].healthStatus = bag[0].maxHealth;
-
+                bag[0].healthStatus = bag[0].maxHealth;
         }
 
         alert(`you heal for 10 your health is now ${bag[0].healthStatus}`);
     }
 
-
-    if (bag[1].healthStatus <= 0 || bag[0].healthStatus <= 0){
+    if(checkGame()){
         break;
     }
+
 
     let squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
 
@@ -65,7 +66,7 @@ while (true){
 
     if(squirtle === "attack"){
 
-        bag[0].healthStatus -= attack;
+        neutralAttack(0);
 
         getCritical(0, 7);
 
@@ -89,7 +90,7 @@ while (true){
         alert(`you heal for 10 your health is now ${bag[1].healthStatus}`);
     }
 
-    if (bag[1].healthStatus <= 0 || bag[0].healthStatus <= 0){
+    if(checkGame()){
         break;
     }
 }
