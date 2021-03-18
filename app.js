@@ -14,7 +14,12 @@ function checkGame(){
 }
 function neutralAttack(enemy){
     let attack = 25;
+    let missed = Math.floor(Math.random()*11);
+    if (missed > 3){
     bag[enemy].healthStatus -= attack;
+}else if(missed <= 3){
+        return "missed";
+    }
 }
 
 const bag = [
@@ -37,10 +42,13 @@ while (true){
     }
 
     if(pikachu === "attack"){
+        if (neutralAttack(1)!== "missed"){
         neutralAttack(1);
         getCritical(1, 15);
-        alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`)
-
+        alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`);
+        }else if(neutralAttack() === "missed"){
+            alert("attack missed");
+        }
     } else if(bag[0].healthStatus >= bag[0].maxHealth){
         alert(`your health was already ${bag[0].maxHealth}`);
         bag[0].healthStatus = bag[0].maxHealth;
@@ -62,47 +70,15 @@ while (true){
     if (autoMove >= 4){
         neutralAttack(0);
         getCritical(0, 7);
-        alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
+        alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`);
     }else if(autoMove < 4 && bag[1].healthStatus < bag[1].maxHealth){
         bag[1].healthStatus += heal;
         alert(`squirtle healed for 10hp squirtle's health is now ${bag[1].healthStatus}`);
     }else {
         neutralAttack(0);
         getCritical(0, 7);
-        alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
+        alert("squirtle missed!");
     }
-
-    // let squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
-    //
-    // while(squirtle !== "attack" && squirtle !== "heal"){
-    //     squirtle = prompt("type attack to attack or heal to heal").toLowerCase();
-    // }
-    //
-    // if(squirtle === "attack"){
-    //
-    //     neutralAttack(0);
-    //
-    //     getCritical(0, 7);
-    //
-    //     alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`)
-    //
-    // } else if(bag[1].healthStatus >= bag[1].maxHealth){
-    //
-    //     alert(`your health was already ${bag[1].maxHealth}`);
-    //
-    //     bag[1].healthStatus = bag[1].maxHealth;
-    //
-    // }else {
-    //     bag[1].healthStatus += heal;
-    //
-    //     if (bag[1].healthStatus >= bag[1].maxHealth){
-    //
-    //         bag[1].healthStatus = bag[1].maxHealth;
-    //
-    //     }
-    //
-    //     alert(`you heal for 10 your health is now ${bag[1].healthStatus}`);
-    // }
 
     if(checkGame()){
         break;
