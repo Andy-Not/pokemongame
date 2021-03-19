@@ -1,4 +1,3 @@
-let heal = 10;
 
 function getCritical(enemy, num){
     let criticalAttack = Math.floor(Math.random()*num);
@@ -20,6 +19,10 @@ function neutralAttack(enemy){
 }else if(missed <= 3){
         return "missed";
     }
+}
+function healPokemon(pokemonNum){
+    let heal = 10;
+    bag[pokemonNum].healthStatus += heal;
 }
 
 const bag = [
@@ -53,7 +56,7 @@ while (true){
         alert(`your health was already ${bag[0].maxHealth}`);
         bag[0].healthStatus = bag[0].maxHealth;
     }else{
-        bag[0].healthStatus += heal;
+        healPokemon(0)
         if (bag[0].healthStatus >= bag[0].maxHealth){
                 bag[0].healthStatus = bag[0].maxHealth;
         }
@@ -72,7 +75,7 @@ while (true){
         getCritical(0, 7);
         alert(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`);
     }else if(autoMove < 4 && bag[1].healthStatus < bag[1].maxHealth){
-        bag[1].healthStatus += heal;
+        healPokemon(1);
         alert(`squirtle healed for 10hp squirtle's health is now ${bag[1].healthStatus}`);
     }else {
         neutralAttack(0);
@@ -88,4 +91,3 @@ alert("GAME OVER")
 alert(`pokemon: ${bag[0].pokemonName}  VS  pokemon: ${bag[1].pokemonName}
 health: ${bag[0].healthStatus}                    health: ${bag[1].healthStatus}
 type: ${bag[0].type}                type: ${bag[1].type}`)
-
