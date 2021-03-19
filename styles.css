@@ -3,13 +3,15 @@
     margin: 0;
     padding: 0;
 }
-.main{background-color: #377227;
+.main{background-color: #242424;
     width: 800px;
     height: 600px;
-    padding: 5px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 .arena{
-    background-color: red;
     width: auto;
     height: 376px;
     background: url("imgs/background/battlegrass.png") no-repeat;
@@ -42,4 +44,65 @@
     bottom: 30px;
     right: 72px;
     width: 80px;
+}
+.myhpbar{
+    position: absolute;
+    bottom: 20px;
+    right: 0px;
+    width: 290px
+}
+.myhpbar img{
+    width: 290px;
+}
+.enemy_hpbar{
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    /*background-color: red;*/
+    width: 240px
+}
+.enemy_hpbar img{
+    width: 240px;
+}
+.menu{
+    /*background-color: #6e5858;*/
+    width: 100%;
+    height: 170px;
+    display: flex;
+}
+.feedback{
+    /*background-color: pink;*/
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.move_options{
+    /*background-color: antiquewhite;*/
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.move_options .move_btns{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
+
+}
+.move_btns button{
+    background-color: red;
+    padding: 10px 30px;
+    align-self: center;
+    justify-self: center;
+}
+.feedback_textbox,
+.move_btns{
+    width: 96%;
+    height: 90%;
+    border-radius: 10px;
+    background-color: #323232;
+    border: white solid 2px;
 }
