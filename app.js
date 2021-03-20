@@ -1,9 +1,10 @@
-
 function getCritical(enemy, num){
+
     let criticalAttack = Math.floor(Math.random()*num);
+
     if (criticalAttack > 6){
         bag[enemy].healthStatus -= criticalAttack;
-        alert(`you hit a critical attack! for ${criticalAttack} hp`)
+        alert(`you hit a critical attack! for ${criticalAttack} hp`);
     }
 }
 function checkGame(){
@@ -39,6 +40,7 @@ const bag = [
 while (true){
 
     let pikachu = prompt("type attack to attack or heal to heal").toLowerCase();
+
     while(pikachu !== "attack" && pikachu !== "heal"){
         alert("try again");
         pikachu = prompt("type attack to attack or heal to heal").toLowerCase();
@@ -46,10 +48,10 @@ while (true){
 
     if(pikachu === "attack"){
         if (neutralAttack(1)!== "missed"){
-        neutralAttack(1);
-        getCritical(1, 15);
-        alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`);
-        }else if(neutralAttack() === "missed"){
+            neutralAttack(1);
+            getCritical(1, 15);
+            alert(`${bag[0].pokemonName} hit ${bag[1].pokemonName}, ${bag[1].pokemonName}'s health is now ${bag[1].healthStatus}`);
+        }else if(neutralAttack(1) === "missed"){
             alert("attack missed");
         }
     } else if(bag[0].healthStatus >= bag[0].maxHealth){
@@ -67,9 +69,11 @@ while (true){
     if(checkGame()){
         break;
     }
+
     alert("squirtles turn");
 
     let autoMove = Math.floor(Math.random()*11);
+
     if (autoMove >= 4){
         neutralAttack(0);
         getCritical(0, 7);
@@ -87,7 +91,7 @@ while (true){
         break;
     }
 }
-alert("GAME OVER")
+alert("GAME OVER");
 alert(`pokemon: ${bag[0].pokemonName}  VS  pokemon: ${bag[1].pokemonName}
 health: ${bag[0].healthStatus}                    health: ${bag[1].healthStatus}
-type: ${bag[0].type}                type: ${bag[1].type}`)
+type: ${bag[0].type}                type: ${bag[1].type}`);
