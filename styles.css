@@ -56,12 +56,22 @@
 .myhpbar img{
     width: 290px;
 }
+.pikachu_lv{
+    position: absolute;
+    right: 26px;
+    top: 21px;
+}
 .enemy_hpbar{
     position: absolute;
     top: 20px;
     left: 0px;
     /*background-color: red;*/
     width: 240px
+}
+.squirtle_lv{
+    position: absolute;
+    right: 45px;
+    top: 16px;
 }
 .enemy_hpbar img{
     width: 240px;
@@ -94,12 +104,21 @@
 
 
 }
-.move_btns button{
-    background-color: red;
-    padding: 10px 30px;
+.move_btns .button{
+    background-color: #F0420C;
+    border-radius: 10px;
+    border: solid 4px #FFDB20;
+    width: auto;
+    padding: 10px 10px;
     align-self: center;
     justify-self: center;
 }
+
+.button:hover{
+    border: solid 4px #FF0B09;
+    cursor: pointer;
+}
+
 .feedback_textbox,
 .move_btns{
     color: white;
