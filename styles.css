@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Press Start 2P', cursive, sans-serif;
 }
 .main{background-color: #242424;
     width: 800px;
@@ -100,8 +102,11 @@
 }
 .feedback_textbox,
 .move_btns{
-    width: 96%;
-    height: 90%;
+    color: white;
+    -webkit-text-stroke: 0.6px black;
+    padding: 10px;
+    width: 95%;
+    height: 87%;
     border-radius: 10px;
     background-color: #323232;
     border: white solid 2px;
