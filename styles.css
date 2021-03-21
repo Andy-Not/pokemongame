@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 *{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Press Start 2P', cursive, sans-serif;
 }
 .main{background-color: #242424;
     width: 800px;
@@ -54,12 +56,22 @@
 .myhpbar img{
     width: 290px;
 }
+.pikachu_lv{
+    position: absolute;
+    right: 26px;
+    top: 21px;
+}
 .enemy_hpbar{
     position: absolute;
     top: 20px;
     left: 0px;
     /*background-color: red;*/
     width: 240px
+}
+.squirtle_lv{
+    position: absolute;
+    right: 45px;
+    top: 16px;
 }
 .enemy_hpbar img{
     width: 240px;
@@ -92,16 +104,28 @@
 
 
 }
-.move_btns button{
-    background-color: red;
-    padding: 10px 30px;
+.move_btns .button{
+    background-color: #F0420C;
+    border-radius: 10px;
+    border: solid 4px #FFDB20;
+    width: auto;
+    padding: 10px 10px;
     align-self: center;
     justify-self: center;
 }
+
+.button:hover{
+    border: solid 4px #FF0B09;
+    cursor: pointer;
+}
+
 .feedback_textbox,
 .move_btns{
-    width: 96%;
-    height: 90%;
+    color: white;
+    -webkit-text-stroke: 0.6px black;
+    padding: 10px;
+    width: 95%;
+    height: 87%;
     border-radius: 10px;
     background-color: #323232;
     border: white solid 2px;
