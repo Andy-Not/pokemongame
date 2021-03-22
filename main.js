@@ -1,5 +1,12 @@
-function displayFeedback(feedback){
+async function displayFeedback(feedback){
 document.getElementById("feedbackbox").innerHTML = feedback;
+await sleep(1000);
+}
+
+function sleep(ms) {
+    return new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
 }
 
 function getCritical(enemy, num){
@@ -43,6 +50,7 @@ const bag = [
         type: "water",
         healthStatus: 100}
 ]
+displayFeedback(null);
 
 document.getElementById("attack_btn").addEventListener("click",function (){
    if (neutralAttack(1) !== "missed"){
@@ -52,8 +60,8 @@ document.getElementById("attack_btn").addEventListener("click",function (){
    }else {
        displayFeedback("your attacked missed");
    }
+        displayFeedback("squirtle is now attacking");
 
-   displayFeedback("squirtle is now attacking");
 
     let autoMove = Math.floor(Math.random()*11);
 
