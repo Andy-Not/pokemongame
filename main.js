@@ -1,12 +1,5 @@
-async function displayFeedback(feedback){
-document.getElementById("feedbackbox").innerHTML = feedback;
-await sleep(1000);
-}
-
-function sleep(ms) {
-    return new Promise(
-        resolve => setTimeout(resolve, ms)
-    );
+function displayFeedback(feedback){
+    document.getElementById("feedbackbox").innerHTML = feedback;
 }
 
 function getCritical(enemy, num){
@@ -50,18 +43,27 @@ const bag = [
         type: "water",
         healthStatus: 100}
 ]
+
+function syncWait(ms) {
+    return new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+}
+
 displayFeedback(null);
 
-document.getElementById("attack_btn").addEventListener("click",function (){
-   if (neutralAttack(1) !== "missed"){
-       neutralAttack(1);
-       getCritical(1, 15);
-       displayFeedback(`you hit ${bag[1].pokemonName}its health is now ${bag[1].healthStatus}`);
-   }else {
-       displayFeedback("your attacked missed");
-   }
-        displayFeedback("squirtle is now attacking");
-
+async function attack() {
+    if (neutralAttack(1) !== "missed") {
+        neutralAttack(1);
+        getCritical(1, 15);
+        displayFeedback(`you hit ${bag[1].pokemonName}its health is now ${bag[1].healthStatus}`);
+        await syncWait(1500);
+    }else {
+        displayFeedback("your attacked missed");
+        await syncWait(1500);
+    }
+    displayFeedback("squirtle is now attacking");
+    await syncWait(1500);
 
     let autoMove = Math.floor(Math.random()*11);
 
@@ -69,13 +71,20 @@ document.getElementById("attack_btn").addEventListener("click",function (){
         neutralAttack(0);
         getCritical(0, 7);
         displayFeedback(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`);
+        await syncWait(1500);
+
     }else if(autoMove < 4 && bag[1].healthStatus < bag[1].maxHealth){
         healPokemon(1);
         displayFeedback(`squirtle healed for 10hp squirtle's health is now ${bag[1].healthStatus}`);
+        await syncWait(1500);
     }else {
         neutralAttack(0);
         getCritical(0, 7);
         displayFeedback("squirtle missed!");
+        await syncWait(1500);
     }
+}
 
+document.getElementById("attack_btn").addEventListener("click",function () {
+    attack();
 });
