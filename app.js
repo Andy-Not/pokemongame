@@ -1,7 +1,5 @@
 function getCritical(enemy, num){
-
     let criticalAttack = Math.floor(Math.random()*num);
-
     if (criticalAttack > 6){
         bag[enemy].healthStatus -= criticalAttack;
         alert(`you hit a critical attack! for ${criticalAttack} hp`);
