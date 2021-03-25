@@ -65,6 +65,9 @@ async function attack() {
     displayFeedback("squirtle is now attacking");
     await syncWait(1500);
 
+    enemyAttack();
+}
+async function enemyAttack(){
     let autoMove = Math.floor(Math.random()*11);
 
     if (autoMove >= 4){
