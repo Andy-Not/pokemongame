@@ -12,11 +12,6 @@ function getCritical(enemy, num){
     }
 }
 
-function checkGame(){
-    if (bag[1].healthStatus <= 0 || bag[0].healthStatus <= 0){
-        return true;
-    }
-}
 
 function neutralAttack(enemy){
     let attack = 25;
@@ -50,8 +45,6 @@ function syncWait(ms) {
     );
 }
 
-displayFeedback(null);
-
 async function attack() {
     if (neutralAttack(1) !== "missed") {
         neutralAttack(1);
@@ -64,9 +57,11 @@ async function attack() {
     }
     displayFeedback("squirtle is now attacking");
     await syncWait(1500);
-
     enemyAttack();
+    await syncWait(1500);
+    displayFeedback("Choose a move");
 }
+
 async function enemyAttack(){
     let autoMove = Math.floor(Math.random()*11);
 
@@ -88,6 +83,24 @@ async function enemyAttack(){
     }
 }
 
+async function heal(){
+    if (bag[0].healthStatus === bag[0].maxHealth){
+        displayFeedback("pikachu's health is already full");
+        await syncWait(1500);
+    } else if(bag[0].healthStatus !== bag[0].maxHealth){
+        healPokemon(0);
+        displayFeedback(`pikachu healed for 10 hp pikachu's health is now ${bag[0].healthStatus}`);
+        await syncWait(1500);
+    }
+    enemyAttack();
+    await syncWait(1500);
+    displayFeedback("Choose a move");
+}
+
 document.getElementById("attack_btn").addEventListener("click",function () {
     attack();
+});
+
+document.getElementById("heal_btn").addEventListener("click",function () {
+    heal();
 });
