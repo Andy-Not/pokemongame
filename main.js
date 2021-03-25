@@ -1,7 +1,25 @@
 function displayFeedback(feedback){
     document.getElementById("feedbackbox").innerHTML = feedback;
 }
+function btnDisable(buttonID){
+    document.getElementById(buttonID).style.display = "none";
+}
 
+async function isGameOver(){
+    if(bag[0].healthStatus <= 0 || bag[1].healthStatus <= 0){
+        let winner;
+        if(bag[0].healthStatus > 0){
+            winner = bag[0].pokemonName;
+        }else{
+            winner = bag[1].pokemonName;
+        }
+       btnDisable("heal_btn");
+       btnDisable("attack_btn");
+       displayFeedback(`GAMEOVER! ${winner.toUpperCase()} WON THE BATTLE`);
+       // await syncWait(1500);
+    }
+
+}
 function getCritical(enemy, num){
 
     let criticalAttack = Math.floor(Math.random()*num);
@@ -11,7 +29,6 @@ function getCritical(enemy, num){
         displayFeedback(`you hit a critical attack! for ${criticalAttack} hp`);
     }
 }
-
 
 function neutralAttack(enemy){
     let attack = 25;
@@ -99,8 +116,11 @@ async function heal(){
 
 document.getElementById("attack_btn").addEventListener("click",function () {
     attack();
+    isGameOver();
 });
 
 document.getElementById("heal_btn").addEventListener("click",function () {
     heal();
+    isGameOver();
 });
+
