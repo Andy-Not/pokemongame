@@ -1,7 +1,26 @@
 function displayFeedback(feedback){
     document.getElementById("feedbackbox").innerHTML = feedback;
 }
+function btnDisable(buttonID){
+    document.getElementById(buttonID).style.display = "none";
+}
 
+ function isGameOver(){
+    if(bag[0].healthStatus <= 0 || bag[1].healthStatus <= 0){
+        let winner;
+        if(bag[0].healthStatus > 0){
+            winner = bag[0].pokemonName;
+        }else{
+            winner = bag[1].pokemonName;
+        }
+       btnDisable("heal_btn");
+       btnDisable("attack_btn");
+       displayFeedback(`GAMEOVER! ${winner.toUpperCase()} WON THE BATTLE`);
+       // await syncWait(1500);
+        return false;
+    }
+
+}
 function getCritical(enemy, num){
 
     let criticalAttack = Math.floor(Math.random()*num);
@@ -11,7 +30,6 @@ function getCritical(enemy, num){
         displayFeedback(`you hit a critical attack! for ${criticalAttack} hp`);
     }
 }
-
 
 function neutralAttack(enemy){
     let attack = 25;
@@ -63,23 +81,24 @@ async function attack() {
 }
 
 async function enemyAttack(){
-    let autoMove = Math.floor(Math.random()*11);
+    if(isGameOver() !== false){
+        let autoMove = Math.floor(Math.random()*11);
+        if (autoMove >= 4){
+            neutralAttack(0);
+            getCritical(0, 7);
+            displayFeedback(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`);
+            await syncWait(1500);
 
-    if (autoMove >= 4){
-        neutralAttack(0);
-        getCritical(0, 7);
-        displayFeedback(`${bag[1].pokemonName} hit ${bag[0].pokemonName}, ${bag[0].pokemonName}'s health is now ${bag[0].healthStatus}`);
-        await syncWait(1500);
-
-    }else if(autoMove < 4 && bag[1].healthStatus < bag[1].maxHealth){
-        healPokemon(1);
-        displayFeedback(`squirtle healed for 10hp squirtle's health is now ${bag[1].healthStatus}`);
-        await syncWait(1500);
-    }else {
-        neutralAttack(0);
-        getCritical(0, 7);
-        displayFeedback("squirtle missed!");
-        await syncWait(1500);
+        }else if(autoMove < 4 && bag[1].healthStatus < bag[1].maxHealth){
+            healPokemon(1);
+            displayFeedback(`squirtle healed for 10hp squirtle's health is now ${bag[1].healthStatus}`);
+            await syncWait(1500);
+        }else {
+            neutralAttack(0);
+            getCritical(0, 7);
+            displayFeedback("squirtle missed!");
+            await syncWait(1500);
+        }
     }
 }
 
@@ -99,8 +118,11 @@ async function heal(){
 
 document.getElementById("attack_btn").addEventListener("click",function () {
     attack();
+    isGameOver();
 });
 
 document.getElementById("heal_btn").addEventListener("click",function () {
     heal();
+    isGameOver();
 });
+
