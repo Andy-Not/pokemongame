@@ -78,6 +78,7 @@ async function attack() {
     enemyAttack();
     await syncWait(1500);
     displayFeedback("Choose a move");
+    isGameOver();
 }
 
 async function enemyAttack(){
@@ -114,15 +115,14 @@ async function heal(){
     enemyAttack();
     await syncWait(1500);
     displayFeedback("Choose a move");
+    isGameOver();
 }
 
 document.getElementById("attack_btn").addEventListener("click",function () {
     attack();
-    isGameOver();
 });
 
 document.getElementById("heal_btn").addEventListener("click",function () {
     heal();
-    isGameOver();
 });
 
