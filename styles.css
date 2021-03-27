@@ -130,3 +130,6 @@
     background-color: #323232;
     border: white solid 2px;
 }
+#reset_btn{
+    display: none;
+}
