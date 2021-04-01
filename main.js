@@ -1,10 +1,12 @@
-function displayFeedback(feedback){
+async function displayFeedback(feedback){
     document.getElementById("feedbackbox").innerHTML = feedback;
+    await syncWait(1500);
 }
 
 function btnDisable(buttonID){
     document.getElementById(buttonID).style.display = "none";
 }
+
 function btnEnable(buttonID){
     document.getElementById(buttonID).style.display = "inline-block";
 }
@@ -26,16 +28,13 @@ function resetBtn(displaytype){
        btnDisable("heal_btn");
        btnDisable("attack_btn");
        displayFeedback(`GAMEOVER! ${winner.toUpperCase()} WON THE BATTLE`);
-       // await syncWait(1500);
-        return "gameover";
+       return "gameover";
     }
 
 }
 
 function getCritical(enemy, num){
-
     let criticalAttack = Math.floor(Math.random()*num);
-
     if (criticalAttack > 6){
         bag[enemy].healthStatus -= criticalAttack;
         displayFeedback(`you hit a critical attack! for ${criticalAttack} hp`);
@@ -84,9 +83,6 @@ async function attack() {
         displayFeedback("your attacked missed");
         await syncWait(1500);
     }
-    //   might add this later but for now is off the game
-    // displayFeedback("squirtle is now attacking");
-    // await syncWait(1500);
     enemyAttack();
     await syncWait(1500);
     displayFeedback("Choose a move");
@@ -138,11 +134,12 @@ document.getElementById("heal_btn").addEventListener("click",function () {
     heal();
     resetBtn();
 });
+
 document.getElementById("reset_btn").addEventListener("click",function (){
     bag[1].healthStatus = bag[1].maxHealth;
     bag[0].healthStatus = bag[0].maxHealth;
     document.getElementById("reset_btn").style.display = "none";
     btnEnable("heal_btn");
     btnEnable("attack_btn");
+    displayFeedback("pick a move to start");
 });
-
