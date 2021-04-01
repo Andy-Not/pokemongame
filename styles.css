@@ -74,7 +74,12 @@
     top: 16px;
 }
 .enemy_hpbar img{
+    position: relative;
     width: 240px;
+    z-index: 2;
+}
+.pokemon_lv{
+    z-index: 3;
 }
 .menu{
     /*background-color: #6e5858;*/
@@ -132,4 +137,12 @@
 }
 #reset_btn{
     display: none;
+}
+.enemybar{
+    background-color: rgba(255,0,0,0.5);
+    position: absolute;
+    width: 98px;
+    bottom: 13px;
+    right: 42px;
+    z-index: 1;
 }
